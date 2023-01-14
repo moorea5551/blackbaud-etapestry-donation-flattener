@@ -120,6 +120,9 @@ class Donor:
         self.FlatCheckNumber = self.FlatCheckNumber[:-2]
         self.FlatDate = self.FlatDate[:-2]
         self.FlatDesignation = self.FlatDesignation[:-2]
+
+    def __iter__(self):
+        return iter([self.AccountName, self.FirstName, self.LastName, self.MiddleName, self.ShortSalutation, self.EnvelopeSalutationLine1, self.EnvelopeSalutationLine2, self.AddressLine1, self.AddressLine2, self.City, self.StateProvince, self.PostalCode, self.AccountType, self.PersonaType, self.FlatCheckDate, self.FlatCheckAmount, self.FlatCheckNumber, self.FlatDate, self.FlatDesignation])
                     
 
 class Donation:

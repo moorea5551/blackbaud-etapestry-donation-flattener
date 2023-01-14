@@ -25,5 +25,13 @@ def main():
             tempDonor.cleanup()
             donors.append(tempDonor)
 
+    with open("output.csv", 'w') as output:
+        fieldnames = donors[0].__dict__.keys()
+        writer = csv.DictWriter(output, delimiter=',', fieldnames=fieldnames)
+        writer.writeheader()
+        for donor in donors:
+            writer.writerow(donor.__dict__)
+
+
 if __name__ == "__main__":
     main()
