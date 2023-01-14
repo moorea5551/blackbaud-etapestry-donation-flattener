@@ -15,8 +15,8 @@ def main():
         dictCsv = list(reader)
 
         for value in dictCsv:
-            if value['donorname'] not in donorNames:
-                donorNames.append(value['donorname'])
+            if value['Account Name'] not in donorNames:
+                donorNames.append(value['Account Name'])
 
         for value in donorNames:
             tempDonor = Donor.Donor(value)
