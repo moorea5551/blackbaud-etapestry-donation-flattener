@@ -22,8 +22,85 @@ class Donor:
     def marshal(self, donationList):
         for value in donationList:
             if value['Account Name'] == self.AccountName:
-                self.Donations.append(Donation(value['event'], value['checkdate'], value['donationdate'], value['checkamount'], value['donorname']))
+                for key in value:
+                    # Pop donor object
+                    if key == "First Name":
+                        self.FirstName = value[key]
+                    elif key == "Last Name":
+                        self.LastName = value[key]
+                    elif key == "Middle Name":
+                        self.MiddleName = value[key]
+                    elif key == "Short Salutation":
+                        self.ShortSalutation = value[key]
+                    elif key == "Envelope Salutation Line 1":
+                        self.EnvelopeSalutationLine1 = value[key]
+                    elif key == "Envelope Salutation Line 2":
+                        self.EnvelopeSalutationLine2 = value[key]
+                    elif key == "Address Line 1":
+                        self.AddressLine1 = value[key]
+                    elif key == "Address Line 2":
+                        self.AddressLine2 = value[key]
+                    elif key == "City":
+                        self.City = value[key]
+                    elif key == "State/Province":
+                        self.StateProvince = value[key]
+                    elif key == "Postal Code":
+                        self.PostalCode = value[key]
+                    elif key == "Account Type":
+                        self.AccountType = value[key]
+                    elif key == "Persona Type":
+                        self.PersonaType = value[key]
 
+                    # Create and pop donation
+                    tempDonation = Donation()
+                    if key == "Date":
+                        tempDonation.Date = value[key]
+                    elif key == "Type":
+                        tempDonation.Type = value[key]
+                    elif key == "Pledged":
+                        tempDonation.Pledged = value[key]
+                    elif key == "Received":
+                        tempDonation.Received = value[key]
+                    elif key == "Fund":
+                        tempDonation.AdditionalGiftType = value[key]
+                    elif key == "Approach":
+                        tempDonation.Approach = value[key]
+                    elif key == "Campaign":
+                        tempDonation.Campaign = value[key]
+                    elif key == "Check Date":
+                        tempDonation.CheckDate = value[key]
+                    elif key == "Check Number":
+                        tempDonation.CheckNumber = value[key]
+                    elif key == "Creation Date (Journal)":
+                        tempDonation.CreationDateJournal = value[key]
+                    elif key == "Designation":
+                        tempDonation.Designation = value[key]
+                    elif key == "Gift in Kind Sale Value":
+                        tempDonation.GiftInKindSaleValue = value[key]
+                    elif key == "Gift Type":
+                        tempDonation.GiftType = value[key]
+                    elif key == "Gift Type Note":
+                        tempDonation.GiftTypeNote = value[key]
+                    elif key == "Linked Soft Credit Account Name":
+                        tempDonation.LinkedSoftCreditAccountName = value[key]
+                    elif key == "Linked Soft Credit Amount":
+                        tempDonation.LinkedSoftCreditAmount = value[key]
+                    elif key == "Note":
+                        tempDonation.Note = value[key]
+                    elif key == "Soft Credit Amount":
+                        tempDonation.SoftCreditAmount = value[key]
+                    elif key == "Transaction Type":
+                        tempDonation.TransactionType = value[key]
+                    elif key == "Tribute":
+                        tempDonation.Tribute = value[key]
+                    elif key == "Acknowledged":
+                        tempDonation.Acknowledged = value[key]
+                    elif key == "Tribute Type":
+                        tempDonation.TributeType = value[key]
+                    
+                    self.Donations.append(tempDonation)
+                
+                    
 
 class Donation():
     def __init__(self):
