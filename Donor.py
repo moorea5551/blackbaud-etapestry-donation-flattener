@@ -21,6 +21,9 @@ class Donor:
 
         self.FlatCheckDate = ""
         self.FlatCheckAmount = ""
+        self.FlatCheckNumber = ""
+        self.FlatDate = ""
+        self.FlatDesignation = ""
 
     def marshal(self, donationList):
         for value in donationList:
@@ -107,10 +110,16 @@ class Donor:
         for donation in self.Donations:
             self.FlatCheckDate += str(donation.CheckDate) + ", "
             self.FlatCheckAmount += str(donation.Received) + ", "
+            self.FlatCheckNumber += str(donation.CheckNumber) + ", "
+            self.FlatDate += str(donation.Date) + ", "
+            self.FlatDesignation += str(donation.Designation) + ", "
 
     def cleanup(self):
         self.FlatCheckAmount = self.FlatCheckAmount[:-2]
         self.FlatCheckDate = self.FlatCheckDate[:-2]
+        self.FlatCheckNumber = self.FlatCheckNumber[:-2]
+        self.FlatDate = self.FlatDate[:-2]
+        self.FlatDesignation = self.FlatDesignation[:-2]
                     
 
 class Donation:
