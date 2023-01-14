@@ -8,16 +8,20 @@ def main():
         print("Expecting csv file path as first argument")
         exit()
 
-    donations = []
+    donorNames = []
+    donors = []
     with open(fileName, newline='') as csvFile:
         reader = csv.DictReader(csvFile, delimiter=',')
         dictCsv = list(reader)
 
         for value in dictCsv:
-            tempDonation = Donor.Donation(value['event'], value['checkdate'], value['donationdate'], value['checkamount'], value['donorname'])
-            donations.append(tempDonation)
+            if value['donorname'] not in donorNames:
+                donorNames.append(value['donorname'])
 
-        print(donations)
+        for value in donorNames:
+            tempDonor = Donor.Donor(value)
+            tempDonor.marshal(dictCsv)
+            donors.append(tempDonor)
 
 if __name__ == "__main__":
     main()
