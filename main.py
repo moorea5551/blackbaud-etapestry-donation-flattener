@@ -15,12 +15,14 @@ def main():
         dictCsv = list(reader)
 
         for value in dictCsv:
-            if value['Account Name'] not in donorNames:
+            if value['Account Name'] not in donorNames and value['Account Name'] is not "Anonymous":
                 donorNames.append(value['Account Name'])
 
         for value in donorNames:
             tempDonor = Donor.Donor(value)
             tempDonor.marshal(dictCsv)
+            tempDonor.flatten()
+            tempDonor.cleanup()
             donors.append(tempDonor)
 
 if __name__ == "__main__":

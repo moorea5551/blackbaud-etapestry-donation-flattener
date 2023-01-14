@@ -19,8 +19,12 @@ class Donor:
 
         self.Donations = []
 
+        self.FlatCheckDate = ""
+        self.FlatCheckAmount = ""
+
     def marshal(self, donationList):
         for value in donationList:
+            tempDonation = Donation()
             if value['Account Name'] == self.AccountName:
                 for key in value:
                     # Pop donor object
@@ -52,7 +56,6 @@ class Donor:
                         self.PersonaType = value[key]
 
                     # Create and pop donation
-                    tempDonation = Donation()
                     if key == "Date":
                         tempDonation.Date = value[key]
                     elif key == "Type":
@@ -98,11 +101,19 @@ class Donor:
                     elif key == "Tribute Type":
                         tempDonation.TributeType = value[key]
                     
-                    self.Donations.append(tempDonation)
-                
+                self.Donations.append(tempDonation)
+
+    def flatten(self):
+        for donation in self.Donations:
+            self.FlatCheckDate += str(donation.CheckDate) + ", "
+            self.FlatCheckAmount += str(donation.Received) + ", "
+
+    def cleanup(self):
+        self.FlatCheckAmount = self.FlatCheckAmount[:-2]
+        self.FlatCheckDate = self.FlatCheckDate[:-2]
                     
 
-class Donation():
+class Donation:
     def __init__(self):
         self.Date = None
         self.Type = None
